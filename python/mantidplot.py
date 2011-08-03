@@ -1,9 +1,8 @@
 import sys
 
 from PyQt4.QtGui import QApplication
-from mantidplotpy import MainWindow
-#from ipythonshell import PythonShell
-from ipython_view import IPythonView
+from mantidplotlib import MainWindow
+from widgets.ipython_view import IPythonView
 
 
 def qapplication():
