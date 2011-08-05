@@ -51,5 +51,12 @@ qt4_wrap_cpp ( MOCCED_FILES ${HDR_FILES} )
 set ( CMAKE_SHARED_LIBRARY_PREFIX )
 # Add the target for this directory
 add_library ( mantidplotlib ${SRC_FILES} ${INC_FILES} ${MOCCED_FILES} )
-# Additonal 
-target_link_libraries ( mantidplotlib ${QT_LIBRARIES} )
+if ( WIN32 )
+  set_target_properties ( mantidplotlib PROPERTIES SUFFIX .pyd )
+elseif ( APPLE )
+# and in .so on the Mac
+  set_target_properties ( mantidplotlib PROPERTIES SUFFIX .so )
+endif ()
+
+# Additonal libraries
+target_link_libraries ( mantidplotlib ${QT_LIBRARIES} ${PYTHON_LIBRARIES} )
